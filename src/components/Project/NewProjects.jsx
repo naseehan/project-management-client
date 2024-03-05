@@ -39,7 +39,7 @@ const NewProjects = ({ data, setRetrievedProjects }) => {
 // delete project
   const handleRemoveProject = async (_id) => {
     try {
-      await axios.delete(`http://localhost:3001/projects/${_id}`, {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/projects/${_id}`, {
         data: {
           _id: _id,
         },
@@ -56,7 +56,7 @@ const NewProjects = ({ data, setRetrievedProjects }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.put(`http://localhost:3001/projects/${currentId}`, {
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/projects/${currentId}`, {
         name,
         members,
         date,

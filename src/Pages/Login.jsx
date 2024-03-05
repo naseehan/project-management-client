@@ -15,8 +15,8 @@ const [error, setError] = useState()
 const handleSubmit = async (e) => {
     e.preventDefault()
     try{
-    const response = await axios.post("http://localhost:3001/login",{name, password})
-        
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`,{name, password})
+   
     setCookies("access_token", response.data.token)
     window.localStorage.setItem("userID", response.data.userID)
     setUser(response.data.name)

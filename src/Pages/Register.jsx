@@ -24,7 +24,7 @@ const handlePassword = (e) => {
 const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-       const response =  await axios.post('http://localhost:3001/register', {name, email, password})
+       const response =  await axios.post(`${process.env.REACT_APP_BASE_URL}/register`, {name, email, password})
       
         setName('')
         setEmail('')

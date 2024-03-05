@@ -11,7 +11,6 @@ const NewTasks = (props) => {
     // setMemberName(name);
     setAfterSubmit(!afterSubmit)
   };
-console.log(props);
   const handleSubmit = (e) => {
     e.preventDefault();
     // setMemberName(memberName.substring(0,2));
