@@ -7,6 +7,7 @@ const Register = () => {
 const [name, setName] = useState("")
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
+const [success, setSuccess] = useState(null)
 
 const handleName = (e) => {
     setName(e.target.value)
@@ -23,11 +24,14 @@ const handlePassword = (e) => {
 const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-        await axios.post('http://localhost:3001/register', {name, email, password})
-        console.log('User saved successfully');
+       const response =  await axios.post('http://localhost:3001/register', {name, email, password})
+      
         setName('')
         setEmail('')
         setPassword('')
+        if(response.status === 201 ){
+            setSuccess("User created successfully")
+          }
        window.location.href = '/login'
     } catch (error) {
         console.error('Error saving user', error);
@@ -41,6 +45,8 @@ const handleSubmit = async (e) => {
             <div className="register-form login-form">
                 <h1>Create your account</h1>
                 <form action="" onSubmit={handleSubmit}>
+                {success!== null ?  <p className="text-white-50 mb-3" style={{ color: 'green' }}>{success}</p> : null}
+
                     <label htmlFor="name">Full Name</label>
                     <input type="text" name="name" value={name} id="name" placeholder='John Doe' onChange={handleName} required/>
                     <label htmlFor="email">Email Address</label>

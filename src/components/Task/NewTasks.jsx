@@ -10,10 +10,8 @@ const NewTasks = (props) => {
     setActiveId(id === activeId ? null : id);
     // setMemberName(name);
     setAfterSubmit(!afterSubmit)
-    console.log(afterSubmit+ " after submit");
-    console.log(activeId);
   };
-
+console.log(props);
   const handleSubmit = (e) => {
     e.preventDefault();
     // setMemberName(memberName.substring(0,2));

@@ -138,8 +138,12 @@ const mobileNavbar = (e) => {
                   <div className={`user-info ${user ? "active-user" : ""}`}>
                         <h3>{userName}</h3>
                         <p>{email}</p>
-                        <a href="/task">My tasks</a>
-                        <a href="/projects">My projects</a>
+                        <Link to="/task">
+                        <a>My tasks</a>
+                        </Link>
+                        <Link to="/projects">
+                        <a>My projects</a>
+                        </Link>
                        <Link to="/login">
                         <button onClick={signOut}>
                                 <span class="shadow"></span>

@@ -159,7 +159,7 @@ useEffect(() => {
   <h3>In Progress </h3>
   <h3>Needs Review</h3>
   <h3>Completed</h3>
-<EachTask data={TaskData} />
+{/* <EachTask data={TaskData} /> */}
 <NewTasks data={taskData} />
 </div>
       </div>

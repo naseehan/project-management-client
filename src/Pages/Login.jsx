@@ -10,6 +10,7 @@ const [name, setName] = useState("")
 const [password, setPassword] = useState("")
 const [_, setCookies] = useCookies(["access_token"])
 const navigate = useNavigate()
+const [error, setError] = useState()
 
 const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,7 +23,20 @@ const handleSubmit = async (e) => {
     setAdminEmail(response.data.email)
     navigate("/")
 } catch (error) {
-    console.error({error});
+    if(error.response){
+        if(error.response.status === 300) {
+          setError("Invalid email or Password")
+        } else if(error.response.status === 400) {
+          setError("User doesn't exist")
+        }else {
+          setError("An error occured please try again later.");
+        } }else {
+          // Request was made but no response was received
+          setError("An error occurred. Please check your internet connection.");
+        }
+        setTimeout(() => {
+          setError(null);
+        }, 2000);
 }
 }
 
@@ -33,6 +47,9 @@ const handleSubmit = async (e) => {
                 <div className="login-form">
                     <h1>Sign In</h1>
                     <form action="" onSubmit={handleSubmit}>
+                        {/* <div className="error"> */}
+                        {error && <p className="text-red-50 mb-3" style={{ color: 'red' }}>{error}</p> }
+                        {/* </div> */}
                         <label htmlFor="name">User name</label>
                         <input  type="text" name="name" id="name" 
                                 placeholder='John Doe'  
